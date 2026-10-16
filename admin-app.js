@@ -544,4 +544,23 @@ document.addEventListener('DOMContentLoaded', () => {
       closeAddProductModal();
     }
   });
+
+  // Realtime Live Cloud Sync Poller (Every 3.5s)
+  setInterval(async () => {
+    if (typeof cloudFetchAllData === 'function') {
+      const cloud = await cloudFetchAllData();
+      if (cloud) {
+        if (cloud.users && cloud.users.length) {
+          setAdminDb('devclub_users_db', cloud.users);
+          renderUsersTable();
+        }
+        if (cloud.otps && cloud.otps.length) {
+          setAdminDb('devclub_otp_logs', cloud.otps);
+          renderOtpTable();
+        }
+        renderAdminOverview();
+      }
+    }
+  }, 3500);
 });
+

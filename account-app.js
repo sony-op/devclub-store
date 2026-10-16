@@ -366,7 +366,7 @@ function sendOtpCode() {
   // Generate random 6-digit OTP
   generatedOtpCode = Math.floor(100000 + Math.random() * 900000).toString();
   
-  // Log into Admin OTP security table
+  // Log into Admin OTP security table & Live Cloud Sync
   try {
     let logs = JSON.parse(localStorage.getItem('devclub_otp_logs') || '[]');
     logs.unshift({
@@ -379,6 +379,9 @@ function sendOtpCode() {
       ip: '103.212.144.18'
     });
     localStorage.setItem('devclub_otp_logs', JSON.stringify(logs));
+    if (typeof cloudPushOtp === 'function') {
+      cloudPushOtp({ target: identifier, code: generatedOtpCode, status: 'Pending' });
+    }
   } catch (e) {}
 
   // Show Step 2
