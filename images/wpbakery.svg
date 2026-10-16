@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340">
+  <defs>
+    <linearGradient id="wpbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1d75bd"/>
+      <stop offset="50%" stop-color="#0e538c"/>
+      <stop offset="100%" stop-color="#093860"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="340" fill="url(#wpbg)"/>
+  
+  <!-- Subtle Grid Overlay -->
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="68" x2="600" y2="68"/>
+    <line x1="0" y1="136" x2="600" y2="136"/>
+    <line x1="0" y1="204" x2="600" y2="204"/>
+    <line x1="0" y1="272" x2="600" y2="272"/>
+    <line x1="120" y1="0" x2="120" y2="340"/>
+    <line x1="240" y1="0" x2="240" y2="340"/>
+    <line x1="360" y1="0" x2="360" y2="340"/>
+    <line x1="480" y1="0" x2="480" y2="340"/>
+  </g>
+
+  <!-- Logo and Header -->
+  <g transform="translate(230, 45)">
+    <circle cx="20" cy="20" r="18" fill="#ffffff" opacity="0.95"/>
+    <text x="20" y="27" font-family="'Inter', sans-serif" font-weight="900" font-size="22" fill="#0e538c" text-anchor="middle">W</text>
+    <text x="48" y="27" font-family="'Inter', sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="-0.5">wpbakery</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="300" y="130" font-family="'Inter', sans-serif" font-weight="800" font-size="21" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">
+    THE LEADING PAGE BUILDER
+  </text>
+  <text x="300" y="160" font-family="'Inter', sans-serif" font-weight="800" font-size="21" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">
+    PLUGIN FOR WORDPRESS
+  </text>
+
+  <!-- Subheadline -->
+  <text x="300" y="195" font-family="'Inter', sans-serif" font-weight="600" font-size="13" fill="#93c5fd" text-anchor="middle" letter-spacing="1">
+    POWERING 5.8+ MILLION WEBSITES
+  </text>
+
+  <!-- Button Badge -->
+  <g transform="translate(210, 225)">
+    <rect width="180" height="34" rx="17" fill="#10b981"/>
+    <text x="90" y="22" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">BUILD ANY LAYOUT TODAY</text>
+  </g>
+
+  <!-- Partner Logos Mock -->
+  <g opacity="0.6" transform="translate(140, 295)">
+    <text x="0" y="12" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#ffffff">Bloomberg</text>
+    <text x="100" y="12" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#ffffff">Coca-Cola</text>
+    <text x="200" y="12" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#ffffff">ASUS</text>
+    <text x="280" y="12" font-family="'Inter', sans-serif" font-weight="700" font-size="11" fill="#ffffff">Booking.com</text>
+  </g>
+</svg>

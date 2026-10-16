@@ -1,0 +1,6 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/account", "destination": "/account.html" }
+  ]
+}

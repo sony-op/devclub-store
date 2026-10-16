@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340">
+  <defs>
+    <linearGradient id="ktbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="340" fill="url(#ktbg)"/>
+
+  <!-- Left Side: Features List -->
+  <g transform="translate(40, 50)">
+    <text x="0" y="30" font-family="'Times New Roman', serif" font-style="italic" font-size="28" fill="#1e293b" letter-spacing="2">
+      [ Katerina ]
+    </text>
+    
+    <g transform="translate(0, 75)" font-family="'Inter', sans-serif" font-size="12" fill="#475569">
+      <g transform="translate(0, 0)">
+        <text x="0" y="0" fill="#10b981" font-weight="900">✓</text>
+        <text x="18" y="0">Unique fullscreen slider</text>
+      </g>
+      <g transform="translate(0, 26)">
+        <text x="0" y="0" fill="#10b981" font-weight="900">✓</text>
+        <text x="18" y="0">Dark mode included</text>
+      </g>
+      <g transform="translate(0, 52)">
+        <text x="0" y="0" fill="#10b981" font-weight="900">✓</text>
+        <text x="18" y="0">Responsive &amp; retina ready</text>
+      </g>
+      <g transform="translate(0, 78)">
+        <text x="0" y="0" fill="#10b981" font-weight="900">✓</text>
+        <text x="18" y="0">Easy to customize</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Side: Model / Portfolio Mockup Photo -->
+  <g transform="translate(300, 30)">
+    <rect x="0" y="0" width="260" height="280" rx="8" fill="#1e293b" filter="drop-shadow(0 15px 30px rgba(0,0,0,0.25))"/>
+    
+    <!-- Warm artistic overlay representing fashion photography -->
+    <rect x="10" y="10" width="240" height="260" rx="6" fill="#a16207"/>
+    <linearGradient id="photoGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#b45309" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#451a03" stop-opacity="0.95"/>
+    </linearGradient>
+    <rect x="10" y="10" width="240" height="260" rx="6" fill="url(#photoGrad)"/>
+    
+    <!-- Silhouette / artistic elements -->
+    <circle cx="130" cy="90" r="45" fill="#fde68a" opacity="0.3"/>
+    <text x="130" y="180" font-family="'Times New Roman', serif" font-style="italic" font-size="22" fill="#ffffff" text-anchor="middle">
+      Editorial &amp; Fashion
+    </text>
+    <text x="130" y="210" font-family="'Inter', sans-serif" font-size="10" fill="#fef3c7" text-anchor="middle" letter-spacing="3">
+      PORTFOLIO THEME
+    </text>
+  </g>
+</svg>

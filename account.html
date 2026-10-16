@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account — devclub.store</title>
+  <meta name="description" content="DevClub Store - Member Library and Downloads">
+  <link rel="stylesheet" href="account-theme.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="devclub-header">
+    <div class="account-container header-content">
+      <!-- Brand Logo -->
+      <a href="index.html" class="header-left">
+        <div class="brand-symbol">
+          <!-- Abstract DevClub Flower/Polygon Logo Icon -->
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">devclub<span style="font-weight: 400; color: #475569;">.store</span></span>
+      </a>
+
+      <!-- Navigation & Profile Icons -->
+      <div class="header-right">
+        <nav class="header-nav">
+          <a href="index.html" class="nav-item">Products</a>
+          <div class="nav-dropdown-wrapper" id="categories-dropdown">
+            <button class="nav-item" type="button" id="categories-toggle" aria-haspopup="true" aria-expanded="false">
+              Categories
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="categories-dropdown-menu" id="categories-menu" role="menu">
+              <a href="#" class="dropdown-item" data-cat="All Categories">All Categories</a>
+              <a href="#" class="dropdown-item" data-cat="Drupal Themes">Drupal Themes</a>
+              <a href="#" class="dropdown-item" data-cat="Elementor Template Kits">Elementor Template Kits</a>
+              <a href="#" class="dropdown-item" data-cat="Joomla Templates">Joomla Templates</a>
+              <a href="#" class="dropdown-item" data-cat="Magento Themes">Magento Themes</a>
+              <a href="#" class="dropdown-item" data-cat="Opencart Themes">Opencart Themes</a>
+              <a href="#" class="dropdown-item" data-cat="Prestashop Themes">Prestashop Themes</a>
+              <a href="#" class="dropdown-item" data-cat="Shopify Themes">Shopify Themes</a>
+              <a href="#" class="dropdown-item" data-cat="Web Templates/Themes">Web Templates/Themes</a>
+              <a href="#" class="dropdown-item" data-cat="WordPress Plugins">WordPress Plugins</a>
+              <a href="#" class="dropdown-item" data-cat="WordPress Themes">WordPress Themes</a>
+            </div>
+          </div>
+          <a href="index.html#pricing" class="nav-item">Membership</a>
+        </nav>
+
+        <div class="header-icons">
+          <!-- Search Icon -->
+          <button class="icon-btn" title="Search" onclick="focusSearch()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+          
+          <!-- Cart Icon -->
+          <button class="icon-btn" title="Cart" onclick="showToast('Cart', 'Your cart is empty', '🛒')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          </button>
+
+          <!-- Account Label -->
+          <a href="account.html" class="nav-item" style="color: #0f172a; font-weight: 600;">Account</a>
+
+          <!-- Purple User Avatar Circle with letter 'N' -->
+          <div class="avatar-badge" id="header-avatar" title="Noman Graphics">N</div>
+
+          <!-- Header Sign Out Icon -->
+          <button class="logout-icon-btn" title="Sign Out" onclick="handleSignOut()">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="account-container">
+
+    <!-- Page Title & Sign Out Button Row -->
+    <div class="page-header-row">
+      <div>
+        <h1 class="main-title">My Account</h1>
+        <p class="welcome-subtitle">Welcome, <span id="user-email-display">info.nomangraphics@gmail.com</span></p>
+      </div>
+
+      <button class="signout-btn" onclick="handleSignOut()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </button>
+    </div>
+
+    <!-- Green Subscription Banner -->
+    <div class="subscription-banner">
+      <div class="sub-left">
+        <!-- Green Checkmark Circle -->
+        <div class="check-circle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+
+        <div>
+          <div class="sub-title-row">
+            <span class="sub-plan-name">Annual Unlimited</span>
+            <span class="active-pill">Active</span>
+          </div>
+          <div class="sub-features">Unlimited Access &bull; Unlimited Downloads</div>
+        </div>
+      </div>
+
+      <button class="manage-sub-btn" onclick="openSubscriptionModal()">Manage Subscription</button>
+    </div>
+
+    <!-- Tabs: My Library vs My Collections -->
+    <div class="tabs-row">
+      <button class="tab-btn active" id="tab-library-btn" onclick="switchTab('library')">
+        My Library (17901)
+      </button>
+      <button class="tab-btn" id="tab-collections-btn" onclick="switchTab('collections')">
+        My Collections
+      </button>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input type="text" id="library-search" class="library-search-input" placeholder="Search your library..." autocomplete="off">
+    </div>
+
+    <!-- Products Grid (4 Columns) -->
+    <div class="library-grid" id="library-grid">
+      <!-- Populated via account-app.js -->
+    </div>
+
+  </main>
+
+  <!-- Subscription Details Modal -->
+  <div class="modal-overlay" id="sub-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeSubscriptionModal()">&times;</button>
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+        <div class="check-circle" style="width: 40px; height: 40px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <h3 style="font-size: 18px; font-weight: 700; color: #064e3b;">Annual Unlimited Membership</h3>
+          <span class="active-pill">Status: Active</span>
+        </div>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; margin-bottom: 20px; font-size: 13.5px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: #64748b;">
+          <span>Account Email:</span>
+          <strong style="color: #0f172a;">info.nomangraphics@gmail.com</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: #64748b;">
+          <span>Billing Period:</span>
+          <strong style="color: #0f172a;">Annual ($89.00 / year)</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: #64748b;">
+          <span>Downloads Remaining:</span>
+          <strong style="color: #16a34a;">Unlimited (No Daily Caps)</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; color: #64748b;">
+          <span>Auto-Renewal:</span>
+          <strong style="color: #0f172a;">Active (Renews Oct 2027)</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="manage-sub-btn" onclick="closeSubscriptionModal()">Close</button>
+        <button class="download-btn" style="width: auto; padding: 0 18px;" onclick="showToast('Invoices', 'Latest receipt PDF downloaded.', '📄'); closeSubscriptionModal();">Download Invoices</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="account-app.js"></script>
+</body>
+</html>
