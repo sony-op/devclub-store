@@ -2,10 +2,7 @@
   "name": "devclub-store",
   "version": "1.0.0",
   "description": "DevClub Store - Digital Assets & GPL Club Membership Platform",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
-  },
-  "dependencies": {}
+    "dev": "node local-server.js"
+  }
 }
