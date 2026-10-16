@@ -1,3 +1,7 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/account", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/admin.html" }
+  ]
 }
