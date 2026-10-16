@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevClub Store — 100% Original GPL Themes, Plugins & PHP Scripts</title>
+  <meta name="description" content="Download 5,200+ premium WordPress plugins, themes, and scripts under GPL license with daily updates, instant downloads, and club memberships.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" id="brand-logo">
+        <div class="brand-icon">⚡</div>
+        <span class="brand-text">DevClub<span style="color: var(--accent-cyan);">.store</span></span>
+        <span class="brand-badge">GPL Club</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Store</a></li>
+        <li><a href="#categories" class="nav-link">Plugins</a></li>
+        <li><a href="#categories" class="nav-link">Themes</a></li>
+        <li><a href="#pricing" class="nav-link">Club Membership</a></li>
+        <li><a href="account.html" class="nav-link">My Account</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <a href="account.html" class="btn btn-secondary btn-sm" id="nav-account-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Account
+        </a>
+        <a href="#pricing" class="btn btn-vip btn-sm" id="nav-vip-btn">
+          ⭐ Join VIP Club
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span>⚡ 100% Legal & Untouched GPL Digital Assets</span>
+      </div>
+
+      <h1 class="hero-title">
+        The Ultimate Digital Club for <span>Developers & Agencies</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Access 5,200+ premium WordPress plugins, Elementor template kits, WooCommerce extensions, and PHP scripts. Direct updates, zero malware, unlimited downloads.
+      </p>
+
+      <!-- Live Search Box -->
+      <div class="search-wrapper">
+        <div class="search-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-dim); margin-right: 12px;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="store-search-input" placeholder="Search 5,200+ plugins, themes, scripts... (e.g. Elementor, Rocket, Astra)" autocomplete="off">
+          <span class="search-badge">Press ESC to clear</span>
+        </div>
+      </div>
+
+      <!-- Live Hero Stats -->
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <span class="stat-icon">📦</span>
+          <span><strong>5,240+</strong> Items in Library</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">🔄</span>
+          <span><strong>Daily</strong> Verified Updates</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">🛡️</span>
+          <span><strong>100% Clean</strong> Original GPL Code</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-icon">⚡</span>
+          <span><strong>Instant</strong> Cloud Downloads</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Catalog Section -->
+  <section class="container" id="categories" style="padding-top: 40px;">
+    <!-- Filter and Sort Toolbar -->
+    <div class="filter-bar">
+      <div class="filter-pills">
+        <button class="filter-btn active" data-cat="all" id="filter-all">All Products</button>
+        <button class="filter-btn" data-cat="plugins" id="filter-plugins">WordPress Plugins</button>
+        <button class="filter-btn" data-cat="themes" id="filter-themes">WordPress Themes</button>
+        <button class="filter-btn" data-cat="elementor" id="filter-elementor">Elementor Kits</button>
+        <button class="filter-btn" data-cat="woocommerce" id="filter-woocommerce">WooCommerce</button>
+        <button class="filter-btn" data-cat="scripts" id="filter-scripts">PHP Scripts</button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Sort by:</span>
+        <select class="sort-select" id="store-sort-select">
+          <option value="popular">Most Popular</option>
+          <option value="rating">Top Rated</option>
+          <option value="name">Alphabetical</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Cards Grid -->
+    <div class="products-grid" id="products-grid">
+      <!-- Injected via app.js -->
+    </div>
+  </section>
+
+  <!-- Membership Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="hero-tag" style="margin-bottom: 12px;">UNBEATABLE VALUE</div>
+        <h2 class="section-title">DevClub Membership Plans</h2>
+        <p class="section-subtitle">
+          Save thousands of dollars on expensive individual licenses. One low membership fee unlocks our entire digital library with instant updates.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Monthly Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Monthly Pass</h3>
+          <div class="pricing-price">$19 <span>/ month</span></div>
+          <p class="pricing-desc">Perfect for freelancers testing new plugins or building a client site.</p>
+          <ul class="pricing-features">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 10 Daily Downloads</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Access to all 5,200+ Products</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Regular Version Updates</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Unlimited Domains Usage</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 100% Original GPL Code</li>
+          </ul>
+          <a href="account.html" class="btn btn-secondary">Get Monthly Pass</a>
+        </div>
+
+        <!-- Annual Plan (Featured) -->
+        <div class="pricing-card featured">
+          <h3 class="pricing-title">Annual Pro Pass</h3>
+          <div class="pricing-price">$89 <span>/ year</span></div>
+          <p class="pricing-desc">Our most popular plan for active agencies and web development studios.</p>
+          <ul class="pricing-features">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 20 Daily Downloads</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Complete Library Access</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> DevClub Auto-Updater Plugin Key</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Priority Update Requests</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Priority VIP Discord & Ticket Support</li>
+          </ul>
+          <a href="account.html" class="btn btn-primary">Join Annual Pro</a>
+        </div>
+
+        <!-- Lifetime VIP Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Lifetime VIP Pass</h3>
+          <div class="pricing-price">$199 <span>/ one-time</span></div>
+          <p class="pricing-desc">Pay once, own the club forever. Never pay a monthly or yearly bill again.</p>
+          <ul class="pricing-features">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <strong>25 Daily Downloads</strong></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Lifetime Access to All Current & Future Items</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Unlimited Auto-Updater API Keys</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Instant Access to New Releases</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Dedicated Support Guarantee</li>
+          </ul>
+          <a href="account.html" class="btn btn-vip">Get Lifetime VIP</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <div class="brand-icon">⚡</div>
+            <span class="brand-text">DevClub<span style="color: var(--accent-cyan);">.store</span></span>
+          </div>
+          <p>
+            Your premier destination for high-quality GPL WordPress themes, plugins, and web development assets. Helping developers build faster without licensing constraints.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Marketplace</h4>
+          <ul class="footer-links">
+            <li><a href="#categories">WordPress Plugins</a></li>
+            <li><a href="#categories">WordPress Themes</a></li>
+            <li><a href="#categories">Elementor Kits</a></li>
+            <li><a href="#categories">WooCommerce Tools</a></li>
+            <li><a href="#categories">PHP SaaS Scripts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Account & Support</h4>
+          <ul class="footer-links">
+            <li><a href="account.html">Member Dashboard</a></li>
+            <li><a href="account.html">My Downloads</a></li>
+            <li><a href="#pricing">Membership Plans</a></li>
+            <li><a href="account.html">API Key Generator</a></li>
+            <li><a href="account.html">Billing & Invoices</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Legal & GPL</h4>
+          <p style="font-size: 0.8rem; color: var(--text-dim); line-height: 1.6;">
+            All items on DevClub.store are developed by third-party creators and distributed under the terms of the GNU General Public License (GPL). DevClub is not affiliated with, endorsed by, or sponsored by WordPress, WooCommerce, or any trademark holders.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 DevClub.store — All Rights Reserved. General Public License (GPL) compliant.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="index.html">Privacy Policy</a>
+          <a href="index.html">Terms of Service</a>
+          <a href="account.html">My Account</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
