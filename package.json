@@ -1,8 +1,0 @@
-{
-  "name": "devclub-store",
-  "version": "1.0.0",
-  "description": "DevClub Store - Digital Assets & GPL Club Membership Platform",
-  "scripts": {
-    "dev": "node local-server.js"
-  }
-}
