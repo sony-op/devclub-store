@@ -331,6 +331,25 @@ function handlePasswordLogin(event) {
       isLoggedIn: true
     };
     setAuthUser(user);
+
+    // Sync into Admin DB
+    try {
+      let users = JSON.parse(localStorage.getItem('devclub_users_db') || '[]');
+      if (!users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        users.unshift({
+          id: 'usr_' + Date.now().toString().slice(-4),
+          name: user.name,
+          email: user.email,
+          authMethod: 'Password',
+          plan: 'Annual Unlimited',
+          status: 'Active',
+          joinedDate: 'Today',
+          downloads: 1
+        });
+        localStorage.setItem('devclub_users_db', JSON.stringify(users));
+      }
+    } catch (e) {}
+
     if (btn) btn.innerHTML = `<span>Sign In to Account</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>`;
     closeAuthModal();
     showToast('Login Successful', `Welcome back, ${user.name}!`, '🎉');
@@ -347,6 +366,21 @@ function sendOtpCode() {
   // Generate random 6-digit OTP
   generatedOtpCode = Math.floor(100000 + Math.random() * 900000).toString();
   
+  // Log into Admin OTP security table
+  try {
+    let logs = JSON.parse(localStorage.getItem('devclub_otp_logs') || '[]');
+    logs.unshift({
+      id: 'otp_' + Date.now().toString().slice(-4),
+      target: identifier,
+      code: generatedOtpCode,
+      type: identifier.includes('@') ? 'Email OTP' : 'Mobile SMS',
+      status: 'Pending',
+      time: 'Just Now',
+      ip: '103.212.144.18'
+    });
+    localStorage.setItem('devclub_otp_logs', JSON.stringify(logs));
+  } catch (e) {}
+
   // Show Step 2
   document.getElementById('otp-step-1').style.display = 'none';
   document.getElementById('otp-step-2').style.display = 'block';
@@ -414,6 +448,33 @@ function verifyOtpAndLogin() {
     isLoggedIn: true
   };
 
+  // Update OTP status in Admin Logs
+  try {
+    let logs = JSON.parse(localStorage.getItem('devclub_otp_logs') || '[]');
+    if (logs.length > 0 && logs[0].code === generatedOtpCode) {
+      logs[0].status = 'Verified';
+      localStorage.setItem('devclub_otp_logs', JSON.stringify(logs));
+    }
+  } catch (e) {}
+
+  // Save in Admin Users DB
+  try {
+    let users = JSON.parse(localStorage.getItem('devclub_users_db') || '[]');
+    if (!users.some(u => u.email.toLowerCase() === user.email.toLowerCase())) {
+      users.unshift({
+        id: 'usr_' + Date.now().toString().slice(-4),
+        name: user.name,
+        email: user.email,
+        authMethod: 'OTP Verified',
+        plan: 'Annual Unlimited',
+        status: 'Active',
+        joinedDate: 'Today',
+        downloads: 1
+      });
+      localStorage.setItem('devclub_users_db', JSON.stringify(users));
+    }
+  } catch (e) {}
+
   setAuthUser(user);
   closeAuthModal();
   resetOtpStep();
@@ -437,6 +498,22 @@ function handleRegistration(event) {
     initial: name.charAt(0).toUpperCase(),
     isLoggedIn: true
   };
+
+  // Add into Admin Users DB
+  try {
+    let users = JSON.parse(localStorage.getItem('devclub_users_db') || '[]');
+    users.unshift({
+      id: 'usr_' + Date.now().toString().slice(-4),
+      name: name,
+      email: email,
+      authMethod: 'Registration Form',
+      plan: 'Annual Unlimited',
+      status: 'Active',
+      joinedDate: 'Today',
+      downloads: 0
+    });
+    localStorage.setItem('devclub_users_db', JSON.stringify(users));
+  } catch (e) {}
 
   setAuthUser(user);
   closeAuthModal();

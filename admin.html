@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Admin Portal — devclub.store</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       Admin Security Lock Screen (Only Admin Can Enter)
+       ======================================================================== -->
+  <div class="admin-lock-screen" id="admin-lock-screen">
+    <div class="admin-lock-card">
+      <div class="admin-shield-icon">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M12 8v4"/><path d="M12 16h.01"/>
+        </svg>
+      </div>
+
+      <h1 class="lock-title">DevClub Admin Portal</h1>
+      <p class="lock-desc">Restricted Access. Only authorized administrators can view user data, OTP security logs, and catalog files.</p>
+
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="lock-field">
+          <label for="admin-login-email">Admin Email ID</label>
+          <input type="text" id="admin-login-email" class="lock-input" placeholder="admin@devclub.store" required value="admin@devclub.store">
+        </div>
+
+        <div class="lock-field">
+          <label for="admin-login-pass">Security Master Key / Password</label>
+          <input type="password" id="admin-login-pass" class="lock-input" placeholder="Enter Admin Password" required value="devclubadmin2026">
+        </div>
+
+        <button type="submit" class="lock-submit-btn">Unlock Admin Dashboard</button>
+        <button type="button" class="lock-quick-btn" onclick="adminQuickLogin()">⚡ 1-Click Master Admin Login (Demo)</button>
+      </form>
+
+      <div style="margin-top: 20px; font-size: 12px; color: var(--text-muted);">
+        <a href="index.html" style="color: #60a5fa; text-decoration: underline;">← Back to Public Store</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Authenticated Admin Dashboard Layout
+       ======================================================================== -->
+  <div class="admin-layout" id="admin-layout" style="display: none;">
+
+    <!-- Left Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <div class="brand-logo-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <path d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-name">devclub<span style="color: #60a5fa;">.store</span></div>
+          </div>
+        </div>
+        <span class="admin-tag">ADMIN</span>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <div class="nav-category">Main Menu</div>
+        <button class="admin-nav-item active" data-tab="overview" onclick="switchAdminTab('overview')">
+          <div class="nav-item-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Overview</span>
+          </div>
+        </button>
+
+        <button class="admin-nav-item" data-tab="users" onclick="switchAdminTab('users')">
+          <div class="nav-item-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>User Accounts</span>
+          </div>
+          <span class="item-badge" id="sidebar-users-count">4</span>
+        </button>
+
+        <button class="admin-nav-item" data-tab="otp" onclick="switchAdminTab('otp')">
+          <div class="nav-item-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>OTP Security Logs</span>
+          </div>
+          <span class="item-badge" id="sidebar-otp-count">3</span>
+        </button>
+
+        <div class="nav-category">Store Catalog</div>
+        <button class="admin-nav-item" data-tab="products" onclick="switchAdminTab('products')">
+          <div class="nav-item-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <span>GPL Products</span>
+          </div>
+        </button>
+
+        <button class="admin-nav-item" data-tab="orders" onclick="switchAdminTab('orders')">
+          <div class="nav-item-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span>Subscriptions</span>
+          </div>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer (Admin User Pill) -->
+      <div class="sidebar-footer">
+        <div class="admin-user-pill">
+          <div class="admin-avatar">A</div>
+          <div class="admin-info">
+            <div class="admin-info-name">Master Admin</div>
+            <div class="admin-info-role">● Full Database Access</div>
+          </div>
+          <button class="admin-logout-btn" onclick="handleAdminLogout()" title="Lock / Logout">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="admin-main">
+      <!-- Top Navigation Bar -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <div class="page-breadcrumb">Admin Console &bull; <span id="current-page-title">System Overview & Analytics</span></div>
+          <div class="system-status-indicator">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: #10b981;"></span>
+            <span>Live Sync Active</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <a href="index.html" class="topbar-action-btn" target="_blank" title="Open Store Front">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>View Public Store</span>
+          </a>
+          <button class="topbar-action-btn" onclick="exportDatabaseJson()" title="Backup Database">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Backup Database</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Views -->
+      <div class="content-body">
+
+        <!-- ==================================================================
+             TAB 1: Overview
+             ================================================================== -->
+        <section class="admin-tab-pane active" id="tab-overview">
+          <!-- 4 KPI Metrics -->
+          <div class="kpi-metrics-grid">
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <div class="kpi-icon-wrap" style="background: rgba(37,99,235,0.15); color: #60a5fa;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <span class="kpi-trend trend-up">+14.5%</span>
+              </div>
+              <div class="kpi-label">Total Registered Users</div>
+              <div class="kpi-value" id="kpi-total-users">4</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <div class="kpi-icon-wrap" style="background: rgba(16,185,129,0.15); color: #34d399;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <span class="kpi-trend trend-up">98.2% Verified</span>
+              </div>
+              <div class="kpi-label">OTP Verifications Sent</div>
+              <div class="kpi-value" id="kpi-total-otps">3</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <div class="kpi-icon-wrap" style="background: rgba(245,158,11,0.15); color: #fbbf24;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <span class="kpi-trend trend-neutral">Daily Updates</span>
+              </div>
+              <div class="kpi-label">GPL Catalog Assets</div>
+              <div class="kpi-value" id="kpi-total-products">6 Items</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <div class="kpi-icon-wrap" style="background: rgba(139,92,246,0.15); color: #c084fc;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <span class="kpi-trend trend-up">Monthly</span>
+              </div>
+              <div class="kpi-label">Club Membership Revenue</div>
+              <div class="kpi-value" id="kpi-total-revenue">$377.00</div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons Row -->
+          <div style="display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap;">
+            <button class="btn-primary-action" onclick="switchAdminTab('users')">👥 View All Users</button>
+            <button class="btn-primary-action" style="background: #10b981;" onclick="switchAdminTab('otp')">🔐 Inspect Live OTPs</button>
+            <button class="btn-primary-action" style="background: #8b5cf6;" onclick="openAddUserModal()">➕ Add New User</button>
+            <button class="btn-primary-action" style="background: #0ea5e9;" onclick="openAddProductModal()">📦 Add New GPL Product</button>
+          </div>
+
+          <!-- Recent Activity Card -->
+          <div class="admin-card">
+            <h3 class="card-title" style="margin-bottom: 16px;">Live System Activity</h3>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13.5px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="color: #34d399;">●</span>
+                  <span>User <strong>info.nomangraphics@gmail.com</strong> signed in with Password</span>
+                </div>
+                <span style="color: var(--text-muted); font-size: 12px;">Just now</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="color: #60a5fa;">●</span>
+                  <span>OTP Code <strong>482910</strong> sent to <strong>info.nomangraphics@gmail.com</strong></span>
+                </div>
+                <span style="color: var(--text-muted); font-size: 12px;">2 mins ago</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="color: #c084fc;">●</span>
+                  <span>Database sync confirmed with GitHub Pages and Vercel edge</span>
+                </div>
+                <span style="color: var(--text-muted); font-size: 12px;">5 mins ago</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             TAB 2: Users Management
+             ================================================================== -->
+        <section class="admin-tab-pane" id="tab-users">
+          <div class="admin-card">
+            <div class="card-header-bar">
+              <div class="card-header-left">
+                <h3 class="card-title">Registered Customer Accounts</h3>
+              </div>
+              <div class="card-actions-right">
+                <input type="text" id="search-users-input" class="table-search-input" placeholder="Search by name, email, plan...">
+                <button class="btn-primary-action" onclick="openAddUserModal()">➕ Add User</button>
+              </div>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>User & Email</th>
+                    <th>Auth Method</th>
+                    <th>Membership Plan</th>
+                    <th>Joined Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-body">
+                  <!-- Populated dynamically by admin-app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             TAB 3: OTP Logs
+             ================================================================== -->
+        <section class="admin-tab-pane" id="tab-otp">
+          <div class="admin-card">
+            <div class="card-header-bar">
+              <div class="card-header-left">
+                <h3 class="card-title">Live OTP Verification Logs</h3>
+                <span style="font-size: 13px; color: var(--text-muted);">(Real-time one-time password monitoring)</span>
+              </div>
+              <div class="card-actions-right">
+                <input type="text" id="search-otp-input" class="table-search-input" placeholder="Search target or OTP code...">
+              </div>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Target Email / Mobile</th>
+                    <th>Generated OTP</th>
+                    <th>Type</th>
+                    <th>Verification Status</th>
+                    <th>Request Time</th>
+                    <th>IP Address</th>
+                  </tr>
+                </thead>
+                <tbody id="otp-table-body">
+                  <!-- Populated dynamically by admin-app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             TAB 4: Products Catalog
+             ================================================================== -->
+        <section class="admin-tab-pane" id="tab-products">
+          <div class="admin-card">
+            <div class="card-header-bar">
+              <div class="card-header-left">
+                <h3 class="card-title">GPL Products & Themes Catalog</h3>
+              </div>
+              <div class="card-actions-right">
+                <input type="text" id="search-products-input" class="table-search-input" placeholder="Search products...">
+                <button class="btn-primary-action" onclick="openAddProductModal()">➕ Add Product</button>
+              </div>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Product Title</th>
+                    <th>Category</th>
+                    <th>Version</th>
+                    <th>Total Downloads</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="products-table-body">
+                  <!-- Populated dynamically by admin-app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             TAB 5: Orders & Subscriptions
+             ================================================================== -->
+        <section class="admin-tab-pane" id="tab-orders">
+          <div class="admin-card">
+            <div class="card-header-bar">
+              <div class="card-header-left">
+                <h3 class="card-title">Club Membership Subscriptions & Payments</h3>
+              </div>
+            </div>
+
+            <div class="data-table-wrapper">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer Email</th>
+                    <th>Plan</th>
+                    <th>Amount Paid</th>
+                    <th>Purchase Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="orders-table-body">
+                  <!-- Populated dynamically by admin-app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: Add New User
+       ======================================================================== -->
+  <div class="admin-modal-backdrop" id="add-user-modal">
+    <div class="admin-modal-box">
+      <div class="modal-header-row">
+        <h3 style="font-size: 18px; font-weight: 800;">Add New Customer Account</h3>
+        <button class="modal-close-btn" onclick="closeAddUserModal()">&times;</button>
+      </div>
+
+      <form onsubmit="saveNewUser(event)">
+        <div class="admin-modal-field">
+          <label for="new-user-name">Full Name</label>
+          <input type="text" id="new-user-name" placeholder="e.g. Alex Johnson" required>
+        </div>
+        <div class="admin-modal-field">
+          <label for="new-user-email">Email Address</label>
+          <input type="email" id="new-user-email" placeholder="alex@company.com" required>
+        </div>
+        <div class="admin-modal-field">
+          <label for="new-user-plan">Membership Plan</label>
+          <select id="new-user-plan">
+            <option value="Annual Unlimited">Annual Unlimited ($89/yr)</option>
+            <option value="VIP Lifetime">VIP Lifetime Club ($199)</option>
+            <option value="Starter Free">Starter Free Access</option>
+          </select>
+        </div>
+        <div class="admin-modal-field">
+          <label for="new-user-method">Allowed Auth Method</label>
+          <select id="new-user-method">
+            <option value="Password">Password Only</option>
+            <option value="OTP Email">OTP Email Verification</option>
+            <option value="OTP Mobile">OTP Mobile SMS</option>
+          </select>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="row-action-btn" onclick="closeAddUserModal()">Cancel</button>
+          <button type="submit" class="btn-primary-action">Create User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: Add New GPL Product
+       ======================================================================== -->
+  <div class="admin-modal-backdrop" id="add-product-modal">
+    <div class="admin-modal-box">
+      <div class="modal-header-row">
+        <h3 style="font-size: 18px; font-weight: 800;">Publish New GPL Product</h3>
+        <button class="modal-close-btn" onclick="closeAddProductModal()">&times;</button>
+      </div>
+
+      <form onsubmit="saveNewProduct(event)">
+        <div class="admin-modal-field">
+          <label for="prod-title">Product Title</label>
+          <input type="text" id="prod-title" placeholder="e.g. WooCommerce Subscriptions Plugin" required>
+        </div>
+        <div class="admin-modal-field">
+          <label for="prod-category">Category</label>
+          <select id="prod-category">
+            <option value="WordPress Plugins">WordPress Plugins</option>
+            <option value="WordPress Themes">WordPress Themes</option>
+            <option value="Shopify Themes">Shopify Themes</option>
+            <option value="Elementor Template Kits">Elementor Template Kits</option>
+            <option value="Web Templates">Web Templates</option>
+          </select>
+        </div>
+        <div class="admin-modal-field">
+          <label for="prod-version">Version</label>
+          <input type="text" id="prod-version" placeholder="e.g. 5.1.2" required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="row-action-btn" onclick="closeAddProductModal()">Cancel</button>
+          <button type="submit" class="btn-primary-action">Publish to Catalog</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Toast Container -->
+  <div id="admin-toast-container" style="position: fixed; bottom: 24px; right: 24px; z-index: 10000;"></div>
+
+  <script src="admin-app.js"></script>
+</body>
+</html>
